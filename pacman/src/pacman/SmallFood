@@ -10,6 +10,7 @@ public SmallFood extends Food{
   }
   
   public void draw (Graphics g){
+    g.setColor(Color.white);
     g.drawOval(x,y,10,10);
   }
   
