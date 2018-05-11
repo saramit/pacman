@@ -1,4 +1,4 @@
-package src.pacman;
+package pacman;
 
 public class RedGhost extends Ghost{
 	// chases pacman

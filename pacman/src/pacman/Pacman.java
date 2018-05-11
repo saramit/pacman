@@ -11,7 +11,7 @@ public class Pacman {
 	private int x;
 	private int y;
 	
-	private String fileName="images/pacman";
+	private static final String fileName="images/pacman";
 	
 	public Pacman(){
 		lives=3;
@@ -46,7 +46,14 @@ public class Pacman {
 		else
 			y+=3;
 		
-		fileName=fileName + dir.toString() + ".png";	// example: pacmanNorth.png
+		String s=fileName + dir.toString() + ".png";	// example: images/pacmanNorth.png
+		Image img = null;
+		g.drawImage(img, x, y, null);
+	}
+	
+	public void changeDirection(Graphics g, Direction d) {	// this would be called whenever an arrow key is pressed
+		dir=d;
+		String s=fileName + dir.toString() + ".png";
 		Image img = null;
 		g.drawImage(img, x, y, null);
 	}
