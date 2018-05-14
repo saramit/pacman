@@ -2,8 +2,11 @@ package pacman;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Timer;
 
 public class SpecialFood extends Food {
+	// consumed by the pacman for no points, but the pacman is able to eat any ghosts it comes in contact with for 30 seconds
+	Timer t;
 	
 	private SpecialFood (int xVal, int yVal){
 		super();
@@ -25,6 +28,11 @@ public class SpecialFood extends Food {
 	public void ifEaten () {
 		super.ifEaten();
 		// makes the pacman able to consume ghosts
+		
+		//while (t > 30 seconds) {
+		// 	it lets you eat the pacman
+		//}
+		
 	}
 
 }

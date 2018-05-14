@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class LargeFood extends Food {
+	// worth 50 points and is consumed by pacman for points
 	
 	private LargeFood (int xVal, int yVal){
 		super();
