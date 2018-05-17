@@ -6,5 +6,11 @@ public class Driver {
 		// TODO Auto-generated method stub
 
 	}
+	
+	public void start () {
+		Board b = new Board();
+		
+		
+	}
 
 }
