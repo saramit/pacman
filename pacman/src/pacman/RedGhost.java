@@ -1,6 +1,14 @@
 package pacman;
 
-public class RedGhost extends Ghost{
+public class RedGhost extends Ghost {
+	
+	public RedGhost() {
+		color = 'r';
+	}
+	
+	public char getColor() {
+		return color;
+	}
 
 	@Override
 	public void doObjective() {

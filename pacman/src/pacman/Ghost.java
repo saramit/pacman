@@ -9,6 +9,7 @@ public abstract class Ghost {
 	private int y;
 	private int startingX;
 	private int startingY;
+	char color;
 	
 	
 	public Ghost() {
@@ -48,7 +49,18 @@ public abstract class Ghost {
 	public void eatenByPacman(){
 		// ghost disappears and returns to startingX and startingY and wait momentarily before returning to the game
 		
-	}
+		if (this.getColor == 'p') {
+			// construct a new ghost that starts at the starting point
+		}
+		if (this.getColor == 'b') {
+			
+		}
+		if (this.getColor == 'r') {
+			
+		}
+		if (this.getColor == 'y') {
+		
+		}
 	
 	public abstract void doObjective();
 
