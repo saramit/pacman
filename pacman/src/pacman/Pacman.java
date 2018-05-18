@@ -8,17 +8,14 @@ public class Pacman {
 	private int lives;
 	private Direction dir;
 	private int score;
-	private int x;
-	private int y;
+	private Location loc;
 	
-	private static final String fileName="images/pacman";
 	
 	public Pacman(){
 		lives=3;
 		score=0;
 		dir=Direction.EAST;
-		x=0;	// start in the lower left corner, facing right
-		//y= height of board
+		loc = new Location(0,row);
 		
 	}
 	
@@ -34,31 +31,36 @@ public class Pacman {
 		addLives(-num);
 	}
 	
-	public void moveAndDraw(Graphics g) {
+	public void moveAndDraw(World w) {
 		// check to make sure it's not facing a wall
 		// add walls on the edges of the board so we don't need to do a bounds check
 		if (facingEast())
-			x+=3;
+			loc = new Location(loc.getRow(),loc.getCol()+1);
 		else if (facingWest())
-			x-=3;
+			loc = new Location(loc.getRow(),loc.getCol()-1);
 		else if (facingNorth())
-			y-=3;
+			loc = new Location(loc.getRow()-1,loc.getCol());
 		else
-			y+=3;
+			loc = new Location(loc.getRow()+1,loc.getCol());
 		
-		String s=fileName + dir.toString() + ".png";	// example: images/pacmanNorth.png
-		Image img = null;
-		g.drawImage(img, x, y, null);
+		w.add(loc, getImage());
 	}
 	
-	public void changeDirection(Graphics g, Direction d) {	// this would be called whenever an arrow key is pressed
+	public void changeDirection(World w, Direction d) {	// this would be called whenever an arrow key is pressed
 		dir=d;
-		String s=fileName + dir.toString() + ".png";
-		Image img = null;
-		g.drawImage(img, x, y, null);
+		// g.drawImage(getImage(), x, y, null);
+		w.add(loc, getImage());
+		
 	}
 	
-	
+	public Image getImage() {
+		BufferedImage img = null;
+		try {
+		    img = ImageIO.read(new File(dir.toString().toLowerCase() + "pacman.png"));
+		} catch (IOException e) {
+		}
+		return img;
+	}
 	public Direction getDirection() {
 		return dir;
 	}
@@ -68,11 +70,8 @@ public class Pacman {
 	public int getScore() {
 		return score;
 	}
-	public int getX() {
-		return x;
-	}
-	public int getY() {
-		return y;
+	public Location getLocation() {
+		return loc;
 	}
 	
 	

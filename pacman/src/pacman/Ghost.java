@@ -5,8 +5,7 @@ import pacman.Pacman.Direction;
 public abstract class Ghost {
 	public enum Direction{NORTH,SOUTH,EAST,WEST};
 	private Direction dir;
-	private int x;
-	private int y;
+	private Location loc;
 	private int startingX;
 	private int startingY;
 	char color;
@@ -26,6 +25,21 @@ public abstract class Ghost {
 		return dir;
 	}
 	
+	public void draw(World w) {
+		
+	}
+	public String getFileName() {
+		String c="";
+		if (color=='p')
+			c="pink";
+		else if (color=='b')
+			c="blue";
+		else if (color=='r')
+			c="red";
+		else
+			c="yellow";
+		return c+"ghost.png";
+	}
 	
 	public boolean east() {
 		return dir == Direction.EAST;
@@ -39,28 +53,29 @@ public abstract class Ghost {
 	public boolean south() {
 		return dir == Direction.SOUTH;
 	}
-	public int getX() {
-		return x;
-	}
-	public int getY() {
-		return y;
+	public Location getLocation() {
+		return loc;
 	}
 	
 	public void eatenByPacman(){
 		// ghost disappears and returns to startingX and startingY and wait momentarily before returning to the game
 		
-		if (this.getColor == 'p') {
+		if (color == 'p') {
 			// construct a new ghost that starts at the starting point
 		}
-		if (this.getColor == 'b') {
+		else if (color == 'b') {
 			
 		}
-		if (this.getColor == 'r') {
+		else if (color == 'r') {
 			
 		}
-		if (this.getColor == 'y') {
+		else if (color == 'y') {
 		
 		}
+	}
+	public char getColor() {
+		return color;
+	}
 	
 	public abstract void doObjective();
 
