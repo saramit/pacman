@@ -4,8 +4,8 @@ import java.awt.Graphics;
 
 public abstract class Food {
 	public int points;
-	protected int x;
-	protected int y;
+	protected int c;
+	protected int r;
 	private boolean isEaten;
 	
 	public Food (){
@@ -16,11 +16,11 @@ public abstract class Food {
 	public int getPoints(){
 		return points;
 	}
-	public int getX(){
-		return x;
+	public int getCol(){
+		return c;
 	}
-	public int getY(){
-		return y;
+	public int getRow(){
+		return r;
 	}
 
 	public void visible (Graphics g){

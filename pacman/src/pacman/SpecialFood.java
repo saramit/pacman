@@ -8,10 +8,10 @@ public class SpecialFood extends Food {
 	// consumed by the pacman for no points, but the pacman is able to eat any ghosts it comes in contact with for 30 seconds
 	Timer t;
 	
-	private SpecialFood (int xVal, int yVal){
+	private SpecialFood (int colVal, int rowVal){
 		super();
-		x = xVal;
-		y = yVal;
+		c = colVal;
+		r = rowVal;
 		points = 0;
 		
 		
@@ -20,7 +20,7 @@ public class SpecialFood extends Food {
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(Color.YELLOW);
-		g.drawRect(15, 15, x, y);
+		g.drawRect(15, 15, c, r);
 		
 	}
 	
