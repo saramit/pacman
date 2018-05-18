@@ -6,9 +6,7 @@ public class YellowGhost extends Ghost{
 		color = 'y';
 	}
 	
-	public char getColor() {
-		return color;
-	}
+	
 
 	@Override
 	public void doObjective() {
