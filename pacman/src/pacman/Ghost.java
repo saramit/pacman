@@ -2,10 +2,7 @@ package pacman;
 
 import pacman.Pacman.Direction;
 
-public abstract class Ghost {
-	public enum Direction{NORTH,SOUTH,EAST,WEST};
-	private Direction dir;
-	private Location loc;
+public abstract class Ghost extends MovingThing {
 	private int startingX;
 	private int startingY;
 	char color;
@@ -18,16 +15,10 @@ public abstract class Ghost {
 		
 		startingX = x;
 		startingY = y;
+		fileName=getFileName();
 		
 	}
 	
-	public Direction getDirection() {
-		return dir;
-	}
-	
-	public void draw(World w) {
-		
-	}
 	public String getFileName() {
 		String c="";
 		if (color=='p')
@@ -39,22 +30,6 @@ public abstract class Ghost {
 		else
 			c="yellow";
 		return c+"ghost.png";
-	}
-	
-	public boolean east() {
-		return dir == Direction.EAST;
-	}
-	public boolean west() {
-		return dir == Direction.WEST;
-	}
-	public boolean north() {
-		return dir == Direction.NORTH;
-	}
-	public boolean south() {
-		return dir == Direction.SOUTH;
-	}
-	public Location getLocation() {
-		return loc;
 	}
 	
 	public void eatenByPacman(){
@@ -73,6 +48,7 @@ public abstract class Ghost {
 		
 		}
 	}
+	
 	public char getColor() {
 		return color;
 	}
