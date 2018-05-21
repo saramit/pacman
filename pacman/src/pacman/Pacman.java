@@ -17,6 +17,16 @@ public class Pacman extends MovingThing {
 		
 	}
 	
+	@Override
+	public Image getImage() {
+		BufferedImage img = null;
+		try {
+		    img = ImageIO.read(new File(dir.toString().toLowerCase() + "pacman.png"));
+		} catch (IOException e) {
+		}
+		return img;
+	}
+	
 	public void changeScore(int value) {
 		score+=value;
 	}

@@ -3,7 +3,6 @@ public class MovingThing {
 	public enum Direction{NORTH,SOUTH,EAST,WEST};
 	private Direction dir;
 	private Location loc;
-	private String fileName;
 	
 	public Location getLocation() {
 		return loc;
@@ -13,37 +12,39 @@ public class MovingThing {
 		return dir;
 	}
 	
-	public Image getImage() {
-		BufferedImage img = null;
-		try {
-		    img = ImageIO.read(new File(fileName));
-		} catch (IOException e) {
-		}
-		return img;
-	}
-	
 	public void moveAndDraw(World w) {
-		// check to make sure it's not facing a wall
-		// add walls on the edges of the board so we don't need to do a bounds check
-		if (facingEast())
-			loc = new Location(loc.getRow(),loc.getCol()+1);
-		else if (facingWest())
-			loc = new Location(loc.getRow(),loc.getCol()-1);
-		else if (facingNorth())
-			loc = new Location(loc.getRow()-1,loc.getCol());
-		else
-			loc = new Location(loc.getRow()+1,loc.getCol());
+		Location nextLoc=getNextLoc();
+		if (w.getGrid().get(nextLoc) instanceof Wall) {
+			return;		// when Pacman hits a wall it stops moving but Ghosts don't; in the Ghost's maze-navigating
+						// function, account for this so that it never hits a wall
+		}
 		
+		loc=nextLoc;
 		w.add(loc, getImage());
 	}
 	
-	public void changeDirection(World w, Direction d) {
+	public Location getNextLoc() {
+		// add walls around the perimeter so that adding/subtracting won't cause bounds error
+		
+		if (facingEast())
+			return new Location(loc.getRow(),loc.getCol()+1);
+		else if (facingWest())
+			return new Location(loc.getRow(),loc.getCol()-1);
+		else if (facingNorth())
+			return new Location(loc.getRow()-1,loc.getCol());
+		else
+			return new Location(loc.getRow()+1,loc.getCol());
+	}
+	
+	public void changeDirection(World w, Direction d) {		// fix this, Ghost doesn't need to redraw
 		// for pacman, this would be called whenever an arrow key is pressed
-		// for ghosts, this is called in its maze-navigating method
+		// for ghosts, this would be called in its maze-navigating method
 		dir=d;
 		w.add(loc, getImage());
 		
 	}
+	
+	public Image getImage();
 	
 	public boolean facingEast() {
 		return dir==Direction.EAST;
