@@ -13,7 +13,7 @@ public class Driver {
 	public void start () {
 		Board b = new Board();
 		
-		
+		// grid is approximately 28 by 38
 	}
 
 }
