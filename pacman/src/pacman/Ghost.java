@@ -7,6 +7,7 @@ public abstract class Ghost extends MovingThing {
 	private int startingY;
 	char color;
 	private final Image img;
+	private Location targetLocation;
 
 	public Ghost() {
 		dir = Direction.NORTH;

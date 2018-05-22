@@ -1,6 +1,9 @@
 package pacman;
 
 public class Driver {
+	Pacman p;
+	World w;
+	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -11,9 +14,17 @@ public class Driver {
 	}
 	
 	public void start () {
-		Board b = new Board();
+		p = new Pacman();
 		
-		// grid is approximately 28 by 38
+		
+	}
+	
+	public Pacman getPacman() {
+		return p;
+	}
+	
+	public World getWorld() {
+		return w;
 	}
 
 }
