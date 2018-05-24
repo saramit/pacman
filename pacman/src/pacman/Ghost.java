@@ -3,18 +3,17 @@ package pacman;
 import pacman.Pacman.Direction;
 
 public abstract class Ghost extends MovingThing {
-	private int startingCol;
-	private int startingRow;
-	private int col;
-	private int row;
+	private int startingX;
+	private int startingY;
 	char color;
 	private final Image img;
-	private ArrayList<Location> list;
 
 	public Ghost() {
 		dir = Direction.NORTH;
-		col = startingCol;
-		row = startingRow;
+		// x and y will be initialized in specified classes because they all start 
+		// in slightly different locations in the center of the board
+		// startingX = x;
+		// startingY = y;
 
 		BufferedImage img = null;
 		try {
@@ -50,7 +49,7 @@ public abstract class Ghost extends MovingThing {
 			if (list.get(0).compareTo(nextLoc)==0)
 					moveAndDraw(w);
 			else {
-				changeDirection(w, loc.getDirectionToward(target));		// getDirectionToward() returns an int
+				changeDirection(w, loc.getDirectionToward(target));		// getDirectionToward() returns heading in degrees
 				moveAndDraw(w);
 			}
 			list.remove(0);
@@ -59,9 +58,20 @@ public abstract class Ghost extends MovingThing {
 	}
 	*/
 	
+	public Direction degreesToDir(int deg) {
+		if (deg==0)
+			return Direction.NORTH;
+		else if (deg==90)
+			return Direction.EAST;
+		else if (deg==180)
+			return Direction.SOUTH;
+		else if (deg==270)
+			return Direction.WEST;
+	}
+	
 	@Override
 	public void changeDirection(World w, Direction d) {
-		dir = d;
+		dir=d;
 	}
 	
 	public void eatenByPacman(){							// incomplete
@@ -69,17 +79,12 @@ public abstract class Ghost extends MovingThing {
 		// ghost disappears and returns to startingX and startingY and wait momentarily before returning to the game
 		if (color == 'p') {
 			// construct a new ghost that starts at the starting point
-			this = null;
-			this = new PinkGhost();
 		} else if (color == 'b') {
-			this = null;
-			this = new BlueGhost();
+
 		} else if (color == 'r') {
-			this = null;
-			this = new RedGhost();
+
 		} else if (color == 'y') {
-			this = null;
-			this = new YellowGhost();
+
 		}
 	}
 
@@ -87,27 +92,80 @@ public abstract class Ghost extends MovingThing {
 		return color;
 	}
 	
-	public void navigateMaze(World w, Location target) {		// incomplete
-		// list = new ArrayList<Location>();
-		
-		/*
-		 * solve the maze and create a list describing the path it needs to take
-		 * use grid.get or g.getNeighbors or g.getOccupiedAdjacentLocations with instanceof Wall
-		 * 
-		 * figure out direction of pacman relative to ghost (eg. west and south)
-		 * 		public int getDirectionToward(loc)
-		 * then just pick a direction (eg. west) and keep going until you hit a wall
-		 * whenever you hit a wall, change to the other direction (eg. south) and repeat
-		 * this would not work in some cases (eg. getting trapped by a wall shaped like an L
-		 * 
-		 * if it gets trapped: (how would it know?)
-		 * 		backtrack until 
-		 */
-		
-		// goToTarget(w,list, target);
+	public void matchRow(World w, Location target) {		// incomplete
+		if (loc.equals(target)) return;
+		if (loc.getRow()-target.getRow()>0)
+			Direction d = Direction.NORTH;
+		else
+			Direction d = Direction.SOUTH;
+		changeDirection(w,d);
+		Location prevLoc;
+		while (loc.getRow()!=target.getRow()) {
+			prevLoc=loc;
+			moveAndDraw(w);
+			if (prevLoc.equals(loc)) {
+				Direction originalDir = dir;
+				while (w.getGrid().get(getNextloc()) instanceof Wall) {
+					// change direction (which way?)
+					moveAndDraw(w);
+					changeDirection(originalDir);
+				}
+			}
+		}
+	}
+	public void matchCol(World w, Location target) {		// incomplete
+		if (loc.equals(target)) return;
+		if (loc.getCol()-target.getCol()>0)
+			Direction d = Direction.WEST;
+		else
+			Direction d = Direction.EAST;
+		changeDirection(w,d);
+		Location prevLoc;
+		while (loc.getCol()!=target.getCol()) {
+			prevLoc=loc;
+			moveAndDraw(w);
+			if (prevLoc.equals(loc)) {
+				// do stuff
+			}
+		}
 	}
 	
-	
+	public void navigateMaze(World w, Location target) {
+		while (!loc.equals(target)) {
+			matchRow(w, target);
+			matchCol(w, target);
+		}
+		
+		
+		// ArrayList<Location> list = new ArrayList<Location>();
+		// goToTarget(w,list, target);
+		
+		/*
+				int degrees = loc.getDirectionToward(target);
+				Direction d1, d2;
+				if (int%90 ==0)
+					d1=degreesToDir(degrees);
+				else {
+					d1=degreesToDir(degrees-45);
+					if (degrees+45 == 360)
+						d2=degreesToDir(0);
+					else
+						d2=degreesToDir(degrees+45);
+				}
+				Location prevLoc;
+				while (!loc.equals(target)) {
+					prevLoc=loc;
+					moveAndDraw(w);
+					if (prevLoc.equals(loc)) {	// only works if it's bounded by a wall on one side only
+						if (getDirection()==d1)
+							changeDirection(w,d2);
+						else
+							changeDirection(w,d1);
+					}
+				}
+				*/
+		
+	}
 
 	public abstract void doObjective();
 
