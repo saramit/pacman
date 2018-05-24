@@ -3,17 +3,17 @@ package pacman;
 import pacman.Pacman.Direction;
 
 public abstract class Ghost extends MovingThing {
-	private int startingX;
-	private int startingY;
+	private int startingCol;
+	private int startingRow;
+	private int col;
+	private int row;
 	char color;
 	private final Image img;
 
 	public Ghost() {
 		dir = Direction.NORTH;
-		// x and y will be initialized in specified classes because they all start 
-		// in slightly different locations in the center of the board
-		// startingX = x;
-		// startingY = y;
+		col = startingCol;
+		row = startingRow;
 
 		BufferedImage img = null;
 		try {
@@ -60,7 +60,7 @@ public abstract class Ghost extends MovingThing {
 	
 	@Override
 	public void changeDirection(World w, Direction d) {
-		dir=d;
+		dir = d;
 	}
 	
 	public void eatenByPacman(){							// incomplete
@@ -68,12 +68,17 @@ public abstract class Ghost extends MovingThing {
 		// ghost disappears and returns to startingX and startingY and wait momentarily before returning to the game
 		if (color == 'p') {
 			// construct a new ghost that starts at the starting point
+			this = null;
+			this = new PinkGhost();
 		} else if (color == 'b') {
-
+			this = null;
+			this = new BlueGhost();
 		} else if (color == 'r') {
-
+			this = null;
+			this = new RedGhost();
 		} else if (color == 'y') {
-
+			this = null;
+			this = new YellowGhost();
 		}
 	}
 
@@ -100,6 +105,8 @@ public abstract class Ghost extends MovingThing {
 		
 		// goToTarget(w,list, target);
 	}
+	
+	
 
 	public abstract void doObjective();
 

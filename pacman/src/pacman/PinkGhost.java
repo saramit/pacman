@@ -7,11 +7,14 @@ public class PinkGhost extends Ghost {
 	
 	public PinkGhost() {
 		color = 'p';
-		targetLocation = p.getLocation
+		targetLocation = p.getLocation;
+		startingRow = 13;
+		 startingCol = 19;
+		// set pacDist to distance between pacman and ghost
 	}
 	
 	@Override
-	public void navigateToTarget(World w, Location target) {
+	public void navigateMaze(World w, Location target) {
 		
 		//makes sure the location is reached in pacman's facial direction
 		 
@@ -20,17 +23,17 @@ public class PinkGhost extends Ghost {
 
 	@Override
 	public void doObjective() {
-		// TODO Auto-generated method stub
+		// aims in front of pacman's mouth
 
 		p = d.getPacman();
 		
 		targetLocation = p.getLocation();
 		
 		
-		super.navigateToTarget(w, targetLocation);
+		super.navigateMaze(w, targetLocation);
 	
 		
 	}
-	// aims in front of pacman's mouth
+	
 
 }

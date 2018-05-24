@@ -7,24 +7,27 @@ public class RedGhost extends Ghost {
 	
 	public RedGhost() {
 		color = 'r';
-		targetLocation = p.getLocation
+		targetLocation = p.getLocation;
+		 startingRow = 14;
+		 startingCol = 19;
+		// set pacDist to distance between pacman and ghost
 	}
 	
 	
 
 	@Override
 	public void doObjective() {
-		// TODO Auto-generated method stub
+		// chases pacman
 
 		p = d.getPacman();
 		
 		targetLocation = p.getLocation();
 		
 		
-		super.navigateToTarget(w, targetLocation);
+		super.navigateMaze(w, targetLocation);
 	
 	
 	}
-	// chases pacman
+	
 
 }

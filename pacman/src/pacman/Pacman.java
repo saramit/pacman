@@ -12,7 +12,8 @@ public class Pacman extends MovingThing {
 		lives=3;
 		score=0;
 		dir=Direction.EAST;
-		loc = new Location(0,row);	// row=?
+		loc = new Location(0,row);
+		fileName=dir.toString().toLowerCase() + "pacman.png";
 		
 	}
 	

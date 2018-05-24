@@ -58,5 +58,12 @@ public class MovingThing {
 	public boolean facingSouth() {
 		return dir==Direction.SOUTH;
 	}
+	
+	public boolean isWallInFront() {
+		if (this.getNextLoc() != null) {
+			return true;
+		}
+		return false;
+	}
 
 }
