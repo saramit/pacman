@@ -1,21 +1,19 @@
 package pacman;
 import java.util.Timer;
+import java.lang.Object;
 
 public class BlueGhost extends Ghost{
 	Driver d;
 	Pacman p;
 	World w;
-	private int pacDist;
 	
 	public BlueGhost() {
 		color = 'b';
 		targetLocation = p.getLocation;
 		startingRow = 15;
 		startingCol = 19;
-		// set pacDist to distance between pacman and ghost
+		loc = new Location (startingRow, startingCol);
 	}
-
-	
 
 	@Override
 	public void doObjective() {
@@ -25,8 +23,7 @@ public class BlueGhost extends Ghost{
 		// runs by a timer where it chooses whether to go away or towards pacman every few minutes
 		
 		
-		World w = d.getWorld();
-
+		w = d.getWorld();
 		p = d.getPacman();
 		int chance = (int) (Math.random()*2);
 		
@@ -38,8 +35,7 @@ public class BlueGhost extends Ghost{
 		}
 		
 		super.navigateMaze(w, targetLocation);
-		
-
+	
 	}
 	
 

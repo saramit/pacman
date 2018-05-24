@@ -1,3 +1,5 @@
+package pacman;
+import java.lang.Object;
 
 public class MovingThing {
 	public enum Direction{NORTH,SOUTH,EAST,WEST};
@@ -13,7 +15,7 @@ public class MovingThing {
 	}
 	
 	public void moveAndDraw(World w) {
-		Location nextLoc=getNextLoc();
+		Location nextLoc = getNextLoc();
 		if (w.getGrid().get(nextLoc) instanceof Wall) {
 			return;		// when Pacman hits a wall it stops moving but Ghosts don't; in the Ghost's maze-navigating
 						// function, account for this so that it never hits a wall

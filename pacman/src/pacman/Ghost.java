@@ -9,6 +9,7 @@ public abstract class Ghost extends MovingThing {
 	private int row;
 	char color;
 	private final Image img;
+	private ArrayList<Location> list;
 
 	public Ghost() {
 		dir = Direction.NORTH;
@@ -87,7 +88,7 @@ public abstract class Ghost extends MovingThing {
 	}
 	
 	public void navigateMaze(World w, Location target) {		// incomplete
-		// ArrayList<Location> list = new ArrayList<Location>();
+		// list = new ArrayList<Location>();
 		
 		/*
 		 * solve the maze and create a list describing the path it needs to take

@@ -1,4 +1,5 @@
 package pacman;
+import java.lang.Object;
 
 public class RedGhost extends Ghost {
 	Pacman p;
@@ -8,9 +9,9 @@ public class RedGhost extends Ghost {
 	public RedGhost() {
 		color = 'r';
 		targetLocation = p.getLocation;
-		 startingRow = 14;
-		 startingCol = 19;
-		// set pacDist to distance between pacman and ghost
+		startingRow = 14;
+		startingCol = 19;
+		loc = new Location (startingRow, startingCol);
 	}
 	
 	
@@ -19,6 +20,7 @@ public class RedGhost extends Ghost {
 	public void doObjective() {
 		// chases pacman
 
+		w = d.getWorld();
 		p = d.getPacman();
 		
 		targetLocation = p.getLocation();

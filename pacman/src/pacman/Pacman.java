@@ -1,4 +1,5 @@
 package pacman;
+import java.lang.Object;
 
 import java.awt.Graphics;
 import java.awt.Image;
