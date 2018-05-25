@@ -1,9 +1,11 @@
 package pacman;
+import java.lang.Object
+import java.util.Timer;
 
 public class Driver {
 	Pacman p;
 	World w;
-	Grid g;
+
 	
 
 	public static void main(String[] args) {
@@ -11,50 +13,46 @@ public class Driver {
 		Driver d = new Driver();
 		
 		d.start();
-
+		w.setGrid(new UnboundedGrid());
+		
+		
 	}
 	
 	public void start () {
-		p = new Pacman();
 		w = new World();
-		g = w.getGrid();
-		JPanel panel = new JPanel();
+		p = new Pacman();
+		Ghost bg = new BlueGhost();
+		Ghost rg = new RedGhost();
+		Ghost pg = new PinkGhost();
+		Ghost yg = new YellowGhost();
 		
-		// swing timer tutorial:
-		// https://docs.oracle.com/javase/tutorial/uiswing/misc/timer.html
-		ActionListener listener = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// do stuff
-			}
-		};
-		timer = new Timer(100, listener);
-		timer.start();
+		w.add(p.getLoc, p);
+		w.add(bg.getLocation, bg);
+		w.add(rg.getLocation, rg);
+		w.add(pg.getLocation, pg);
+		w.add(yg.getLocation, yg);
+		while (int i = 0; i < 4) {
+			w.add(new LargeFood);
+			i++
+		}
+		w.add(new SpecialFood);
 		
-		
-		// key binding tutorial:
-		// https://docs.oracle.com/javase/tutorial/uiswing/misc/keybinding.html
-		panel.getInputMap().put(KeyStroke.getKeyStroke("up"));
-		panel.getInputMap().put(KeyStroke.getKeyStroke("down"));
-		panel.getInputMap().put(KeyStroke.getKeyStroke("left"));
-		panel.getInputMap().put(KeyStroke.getKeyStroke("right"));
-		
-		panel.getActionMap().put("up", new AbstractAction() {
-			p.changeDirection(w,Direction.NORTH);
-		});
-		panel.getActionMap().put("down", new AbstractAction() {
-			p.changeDirection(w,Direction.SOUTH);
-		});
-		panel.getActionMap().put("left", new AbstractAction() {
-			p.changeDirection(w,Direction.WEST);
-		});
-		panel.getActionMap().put("right", new AbstractAction() {
-			p.changeDirection(w,Direction.EAST);
-		});
-		
+		addWalls();
+		addSmallFood();
 		
 	}
 	
+	public void addWalls() {
+		
+	}
 	
+	public void addSmallFood() {
+		
+		for (Location l : getRandomEmptyLocation()) {
+			w.add(new SmallFood);
+		}
+		
+	}
 	
 	public Pacman getPacman() {
 		return p;
