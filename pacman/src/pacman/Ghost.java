@@ -3,17 +3,19 @@ package pacman;
 import pacman.Pacman.Direction;
 
 public abstract class Ghost extends MovingThing {
-	private int startingX;
-	private int startingY;
+	private int startingCol;
+	private int startingRow;
+	private int col;	
+	private int row;
 	char color;
 	private final Image img;
+	private ArrayList<Location> list;	
 
 	public Ghost() {
 		dir = Direction.NORTH;
 		// x and y will be initialized in specified classes because they all start 
 		// in slightly different locations in the center of the board
-		// startingX = x;
-		// startingY = y;
+		col = startingCol;
 
 		BufferedImage img = null;
 		try {
@@ -74,19 +76,20 @@ public abstract class Ghost extends MovingThing {
 		dir=d;
 	}
 	
-	public void eatenByPacman(){							// incomplete
-		
-		// ghost disappears and returns to startingX and startingY and wait momentarily before returning to the game
+	public void eatenByPacman(){							
 		if (color == 'p') {
-			// construct a new ghost that starts at the starting point
-		} else if (color == 'b') {
-
-		} else if (color == 'r') {
-
-		} else if (color == 'y') {
-
-		}
-	}
+			this = null;	
+			this = new PinkGhost();	
+	 	} else if (color == 'b') {
+			this = null;	+
+			this = new BlueGhost();	
+ 		} else if (color == 'r') {
+			this = null;	+
+			this = new RedGhost();	
+ 		} else if (color == 'y') {
+			this = null;	+
+			this = new YellowGhost();
+ 		}
 
 	public char getColor() {
 		return color;
