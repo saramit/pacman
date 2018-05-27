@@ -1,12 +1,18 @@
-package pacman;
+package info.gridworld.actor;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import javax.imageio.ImageIO;
+import javax.tools.DocumentationTool.Location;
 
-import pacman.Pacman.Direction;
 
 public abstract class Ghost extends MovingThing {
-	private int startingCol;
-	private int startingRow;
-	private int col;	
-	private int row;
+	public int startingCol;
+	public int startingRow;
+	public int col;	
+	public int row;
 	char color;
 	private final Image img;
 	private ArrayList<Location> list;	
@@ -26,7 +32,7 @@ public abstract class Ghost extends MovingThing {
 	}
 
 	@Override
-	public Image getImage() {
+	public BufferedImage getImage() {
 		return img;
 	}
 

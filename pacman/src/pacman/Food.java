@@ -1,4 +1,4 @@
-package pacman;
+package info.gridworld.actor;
 
 import java.awt.Graphics;
 

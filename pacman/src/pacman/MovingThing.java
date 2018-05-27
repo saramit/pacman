@@ -1,5 +1,9 @@
-package pacman;
+package info.gridworld.actor;
+
+import java.awt.image.BufferedImage;
 import java.lang.Object;
+
+import javax.tools.DocumentationTool.Location;
 
 public class MovingThing {
 	public enum Direction{NORTH,SOUTH,EAST,WEST};
@@ -14,7 +18,7 @@ public class MovingThing {
 		return dir;
 	}
 	
-	public void moveAndDraw(World w) {
+	public void moveAndDraw(ActorWorld w) {
 		Location nextLoc = getNextLoc();
 		if (w.getGrid().get(nextLoc) instanceof Wall) {
 			return;		// when Pacman hits a wall it stops moving but Ghosts don't; in the Ghost's maze-navigating
@@ -46,7 +50,7 @@ public class MovingThing {
 		
 	}
 	
-	public Image getImage();
+	public BufferedImage getImage();
 	
 	public boolean facingEast() {
 		return dir==Direction.EAST;

@@ -1,4 +1,4 @@
-package pacman;
+package info.gridworld.actor;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -29,17 +29,7 @@ public class SpecialFood extends Food {
 		super.ifEaten();
 		// makes the pacman able to consume ghosts
 		
-		 t = new Timer(1000, new ActionListener() {
-			 @Override
-             public void actionPerformed(ActionEvent e) {
-                 lives.removeLife();
-                 
-		 }
-		
-		//while (t > 30 seconds) {
-		// 	it lets you eat the pacman
-		//}
-		
+		 t = new Timer();
 	}
 
 }

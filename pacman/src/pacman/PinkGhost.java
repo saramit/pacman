@@ -1,4 +1,5 @@
-package pacman;
+package info.gridworld.actor;
+
 import java.lang.Object;
 
 public class PinkGhost extends Ghost {

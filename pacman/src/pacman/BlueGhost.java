@@ -1,4 +1,5 @@
-package pacman;
+package info.gridworld.actor;
+
 import java.util.Timer;
 import java.lang.Object;
 
