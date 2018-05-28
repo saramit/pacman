@@ -1,5 +1,6 @@
-package info.gridworld.actor;
 import java.lang.Object;
+import info.gridworld.actor.*;
+import info.gridworld.grid.*;
 
 public class RedGhost extends Ghost {
 	Pacman p;
@@ -14,6 +15,9 @@ public class RedGhost extends Ghost {
 		loc = new Location (startingRow, startingCol);
 	}
 	
+	public Location getLocation() {
+		return loc;
+	}
 	
 
 	@Override

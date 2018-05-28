@@ -1,11 +1,11 @@
-package info.gridworld.actor;
-
 import java.lang.Object;
+import info.gridworld.actor.*;
+import info.gridworld.grid.*;
 
 public class PinkGhost extends Ghost {
 	Pacman p;
 	Driver d;
-	World w;
+	ActorWorld w;
 	
 	public PinkGhost() {
 		color = 'p';
@@ -15,8 +15,12 @@ public class PinkGhost extends Ghost {
 		loc = new Location (startingRow, startingCol);
 	}
 	
+	public Location getLocation() {
+		return loc;
+	}
+	
 	@Override
-	public void navigateMaze(World w, Location target) {
+	public void navigateMaze(ActorWorld w, Location target) {
 		
 		//makes sure the location is reached in pacman's facial direction
 		// other then that it will work like the super class

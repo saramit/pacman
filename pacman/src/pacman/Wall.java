@@ -1,5 +1,4 @@
-package info.gridworld.actor;
-
+import info.gridworld.grid.Location;
 import java.lang.Object;
 
 public class Wall {

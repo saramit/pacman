@@ -1,4 +1,3 @@
-package info.gridworld.actor;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -8,10 +7,8 @@ public class SpecialFood extends Food {
 	// consumed by the pacman for no points, but the pacman is able to eat any ghosts it comes in contact with for 30 seconds
 	Timer t;
 	
-	private SpecialFood (int colVal, int rowVal){
+	public SpecialFood (){
 		super();
-		c = colVal;
-		r = rowVal;
 		points = 0;
 		
 		

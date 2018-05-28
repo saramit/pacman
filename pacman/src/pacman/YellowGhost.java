@@ -1,6 +1,6 @@
-package info.gridworld.actor;
-
 import java.lang.Object;
+import info.gridworld.actor.*;
+import info.gridworld.grid.*;
 
 public class YellowGhost extends Ghost{
 	Driver d;
@@ -12,6 +12,10 @@ public class YellowGhost extends Ghost{
 		startingRow = 14;
 		startingCol = 20;
 		loc = new Location (startingRow, startingCol);
+	}
+	
+	public Location getLocation() {
+		return loc;
 	}
 	
 	

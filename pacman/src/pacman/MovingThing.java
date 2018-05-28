@@ -1,14 +1,13 @@
 package info.gridworld.actor;
-
 import java.awt.image.BufferedImage;
 import java.lang.Object;
-
-import javax.tools.DocumentationTool.Location;
+import info.gridworld.actor.ActorWorld;
+import info.gridworld.grid.Location;
 
 public class MovingThing {
 	public enum Direction{NORTH,SOUTH,EAST,WEST};
-	private Direction dir;
-	private Location loc;
+	public Direction dir;
+	public Location loc;
 	
 	public Location getLocation() {
 		return loc;
@@ -50,7 +49,9 @@ public class MovingThing {
 		
 	}
 	
-	public BufferedImage getImage();
+	public BufferedImage getImage() {
+		return null;
+	}
 	
 	public boolean facingEast() {
 		return dir==Direction.EAST;

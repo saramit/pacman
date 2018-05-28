@@ -1,5 +1,5 @@
-package info.gridworld.actor;
-
+import info.gridworld.actor.*;
+import info.gridworld.grid.*;
 import java.lang.Object;
 
 import javax.imageio.ImageIO;
@@ -13,10 +13,10 @@ import java.io.IOException;
 public class Pacman extends MovingThing {
 	private int lives;
 	private int score;
-	private int row;
-	private int col;
-	private int startingRow;
-	private int startingCol;
+	private double row;
+	private double col;
+	private double startingRow;
+	private double startingCol;
 	
 	
 	public Pacman(){

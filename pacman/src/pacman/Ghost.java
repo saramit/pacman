@@ -5,8 +5,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
-import javax.tools.DocumentationTool.Location;
-
 
 public abstract class Ghost extends MovingThing {
 	public int startingCol;
@@ -16,12 +14,16 @@ public abstract class Ghost extends MovingThing {
 	char color;
 	private final Image img;
 	private ArrayList<Location> list;	
+	private Location targetLocation;
+	private Ghost g;
 
 	public Ghost() {
 		dir = Direction.NORTH;
 		// x and y will be initialized in specified classes because they all start 
 		// in slightly different locations in the center of the board
 		col = startingCol;
+		
+		this = g;
 
 		BufferedImage img = null;
 		try {
@@ -75,6 +77,8 @@ public abstract class Ghost extends MovingThing {
 			return Direction.SOUTH;
 		else if (deg==270)
 			return Direction.WEST;
+		
+		return null;
 	}
 	
 	@Override
@@ -84,24 +88,25 @@ public abstract class Ghost extends MovingThing {
 	
 	public void eatenByPacman(){							
 		if (color == 'p') {
-			this = null;	
-			this = new PinkGhost();	
+			g = null;	
+			g = new PinkGhost();	
 	 	} else if (color == 'b') {
-			this = null;	+
-			this = new BlueGhost();	
+			g = null;
+			g = new BlueGhost();	
  		} else if (color == 'r') {
-			this = null;	+
-			this = new RedGhost();	
+			g = null;
+			g = new RedGhost();	
  		} else if (color == 'y') {
-			this = null;	+
-			this = new YellowGhost();
+			g = null;
+			g = new YellowGhost();
  		}
+ 	}
 
 	public char getColor() {
 		return color;
 	}
 	
-	public void matchRow(World w, Location target) {		// incomplete
+	public void matchRow(ActorWorld w, Location target) {		// incomplete
 		if (loc.equals(target)) return;
 		if (loc.getRow()-target.getRow()>0)
 			Direction d = Direction.NORTH;
@@ -122,7 +127,7 @@ public abstract class Ghost extends MovingThing {
 			}
 		}
 	}
-	public void matchCol(World w, Location target) {		// incomplete
+	public void matchCol(ActorWorld w, Location target) {		// incomplete
 		if (loc.equals(target)) return;
 		if (loc.getCol()-target.getCol()>0)
 			Direction d = Direction.WEST;
@@ -139,7 +144,7 @@ public abstract class Ghost extends MovingThing {
 		}
 	}
 	
-	public void navigateMaze(World w, Location target) {
+	public void navigateMaze(ActorWorld w, Location target) {
 		while (!loc.equals(target)) {
 			matchRow(w, target);
 			matchCol(w, target);

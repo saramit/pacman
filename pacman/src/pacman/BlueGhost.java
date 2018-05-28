@@ -1,12 +1,12 @@
-package info.gridworld.actor;
-
+import info.gridworld.actor.*;
+import info.gridworld.grid.*;
 import java.util.Timer;
 import java.lang.Object;
 
 public class BlueGhost extends Ghost{
 	Driver d;
 	Pacman p;
-	World w;
+	ActorWorld w;
 	
 	public BlueGhost() {
 		color = 'b';
@@ -16,6 +16,10 @@ public class BlueGhost extends Ghost{
 		loc = new Location (startingRow, startingCol);
 	}
 
+	public Location getLocation() {
+		return loc;
+	}
+	
 	@Override
 	public void doObjective() {
 		// "fickle" -- sometimes heads towards pacman and sometimes away

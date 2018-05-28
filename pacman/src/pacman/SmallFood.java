@@ -1,4 +1,3 @@
-package info.gridworld.actor;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -6,7 +5,7 @@ import java.awt.Graphics;
 public class SmallFood extends Food {
 	// worth 10 points and is consumed by pacman for points
 	
-	private SmallFood (){
+	public SmallFood (){
 		super();
 		points = 10;
 		

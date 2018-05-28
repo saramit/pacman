@@ -1,6 +1,4 @@
-package info.gridworld.actor;
 
-import java.awt.Graphics;
 
 public abstract class Food {
 	public int points;
@@ -23,23 +21,20 @@ public abstract class Food {
 		return r;
 	}
 
-	public void visible (Graphics g){
+	public void visible (){
 		if (isEaten == false){
-			//g.draw(g);
+			
 		}
 		else{	
-			//g.setVisible(false);
+			
 		}
 	}
 	
 	public void ifEaten () {
 		isEaten = true;
 		points = 0;
-		//visible(g);
+		visible();
 	}
-
-	public abstract void draw (Graphics g);
-
 
 	
 	
